@@ -1,56 +1,74 @@
-student_magazine = {}
+grades = {}
+
+print("Введіть ім'я студента та його оцінку (1–12). Щоб завершити — введіть 'стоп'.")
+
 while True:
-    print("Виберіть дію:")
-    print("1.Додати нового студента")
-    print("2.Вивести журнал студентів")
-    print("3.Вивести середній бал студентів")
-    print("4.Вивести категорії студентів за оцінками")
-    print("Щоб вийти з програми введіть (stop)")
-    choice = input("_> ")
-    if choice == "1":
-        name = input("Введіть ім'я студента: ")
-        mark = int(input("Введіть оцінку студента: "))
-        if mark < 1 or mark > 12:
-            print("Такої оцінки не існує")
-        else:
-            student_magazine[name] = mark
-    elif choice == "2":
-        if not student_magazine:
-            print("Список студентів порожній.")
-        else:
-            print("Список успішності студентів:")
-            for name, mark in student_magazine.items():
-                print(f"{name}: {mark}")
-    elif choice == "3":
-        if not student_magazine:
-            print("Список студентів порожній.")
-        else:
-            ball = sum(student_magazine.values()) / len(student_magazine)
-            print(f"Середній бал серед студентів - {ball}")
-    elif choice == "4":
-        if not student_magazine:
-            print("Список студентів порожній.")
-        else:
-            excellent = []
-            good = []
-            struggling = []
-            failed = []
-            for name in student_magazine:
-                mark = student_magazine[name]
-                if 10 <= mark <= 12:
-                    excellent.append(name)
-                elif 7 <= mark <= 9:
-                    good.append(name)
-                elif 4 <= mark <= 6:
-                    struggling.append(name)
-                elif 1 <= mark <= 3:
-                    failed.append(name)
-            print(f"Відмінники (10-12): {len(excellent)} ( {', '.join(excellent)})")
-            print(f"Хорошисти (7-9): {len(good)} ( {', '.join(good)})")
-            print(f"Відстаючі (4-6): {len( struggling)} ( {', '.join( struggling) })")
-            print(f"Не здали (1-3): {len(failed)} ({', '.join(failed) })")
-    elif choice.lower() == "stop":
-        print("Дякую що відвідали нашу програму")
+    name = input("Ім'я студента: ")
+    if name.lower() == "стоп":
         break
+
+    grade = int(input(f"Оцінка для {name}: "))
+    if 1 <= grade <= 12:
+        grades[name] = grade
     else:
-        print("Ви ввели неправильну дію. Спробуйте ще раз")
+        print("Оцінка має бути від 1 до 12!")
+
+if not grades:
+    print("Немає введених даних.")
+else:
+    print("\n--- Результати ---")
+    for name, grade in grades.items():
+        print(f"{name}: {grade}")
+
+    # Обчислення середнього бала
+    aver = sum(grades.values()) / len(grades)
+    rounded_aver = round(aver, 1)
+    print(f"Середній бал по групі: {rounded_aver}")
+
+    # Категорії студентів
+    excell = []
+    good = []
+    poor = []
+    fail = []
+
+    for name, grade in grades.items():
+        if 10 <= grade <= 12:
+            excell.append(name)
+        elif 7 <= grade <= 9:
+            good.append(name)
+        elif 4 <= grade <= 6:
+            poor.append(name)
+        elif 1 <= grade <= 3:
+            fail.append(name)
+
+    print("\nВідмінники: ", end="")
+    if len(excell) == 0:
+        print("немає")
+    else:
+        for name in excell:
+            print(name, end=" ")
+        print()
+
+    print("Хорошисти: ", end="")
+    if len(good) == 0:
+        print("немає")
+    else:
+        for name in good:
+            print(name, end=" ")
+        print()
+
+    print("Відстаючі: ", end="")
+    if len(poor) == 0:
+        print("немає")
+    else:
+        for name in poor:
+            print(name, end=" ")
+        print()
+
+    print("Не здали: ", end="")
+    if len(fail) == 0:
+        print("немає")
+    else:
+        for name in fail:
+            print(name, end=" ")
+        print()
