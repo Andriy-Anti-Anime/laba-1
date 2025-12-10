@@ -51,18 +51,16 @@ print(back_to_python['name'])
 #os
 print("--- Робота з каталогами ---")
 
-# 1. Дізнатися, в якому каталозі ми зараз знаходимося (Подібно до команди 'pwd')
 current_dir = os.getcwd()
 print(f"1. Поточний робочий каталог: \n   {current_dir}\n")
 
-# 2. Отримати список всіх файлів та папок у цьому каталозі (Подібно до команди 'ls')
 contents = os.listdir(current_dir)
 print(f"2. Вміст каталогу ({len(contents)} елементів):")
 
-# Виведення перших 5 елементів для короткості
 for item in contents[:5]:
     print(f"   - {item}")
 
 # Якщо елементів більше, ніж 5
 if len(contents) > 5:
+
     print("   ...")
