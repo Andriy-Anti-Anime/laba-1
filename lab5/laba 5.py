@@ -40,11 +40,10 @@ print(f"Перемішаний список: {my_list}")
 #json
 python_dict = {"name": "Іван", "age": 30}
 
-# Серіалізація: Python -> JSON (рядок)
+
 json_string = json.dumps(python_dict, ensure_ascii=False, indent=4)
 print(json_string)
 
-# Десеріалізація: JSON (рядок) -> Python
 back_to_python = json.loads(json_string)
 print(back_to_python['name'])
 
@@ -64,3 +63,4 @@ for item in contents[:5]:
 if len(contents) > 5:
 
     print("   ...")
+
