@@ -7,18 +7,6 @@ store = {
     "ручка": 9.99
 }
 
-
-def convertator(price):
-store = {
-    "телефон": 9999.00,
-    "зубна щітка": 91.50,
-    "банан": 44.12,
-    "чай": 120.00,
-    "зошит": 31.30,
-    "ручка": 9.99
-}
-
-
 def convertator(price):
     return f'ціна: {price:.2f} грн'
 
@@ -63,3 +51,4 @@ if __name__ == "__main__":
     print(check_order(["телефон", "зубна щітка"], "buy"))
 
     print(check_order(["телефон", "кетчуп"], "buy"))
+
